@@ -2,10 +2,15 @@
   "name": "identifiers-doi",
   "version": "0.1.0",
   "description": "Extract, validate and normalize DOIs (and ISBN-As).",
+  "keywords": ["doi", "isbn-a", "identifiers"],
   "main": "./lib/doi.js",
   "repository": "https://github.com/altmetric/identifiers-doi",
+  "bugs": "https://github.com/altmetric/identifiers-doi/issues",
   "author": "Paul Mucur",
   "license": "MIT",
+  "engines": {
+    "node": ">= 4"
+  },
   "devDependencies": {
     "eslint": "^3.15.0",
     "jest": "^18.1.0"
