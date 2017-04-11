@@ -31,10 +31,50 @@ test("extracts DOIs with 9-digit prefixes", () => {
     expect(doi.extract("10.123456789/foobar")).toEqual(["10.123456789/foobar"]);
 });
 
-test("extract DOIs with punctuation in the suffix", () => {
+test("extracts DOIs with punctuation in the suffix", () => {
     expect(doi.extract("10.1234/foo.bar")).toEqual(["10.1234/foo.bar"]);
 });
 
-test("extract DOIs without trailing punctuation", () => {
+test("extracts DOIs without trailing punctuation", () => {
     expect(doi.extract("10.1234/foo.bar.")).toEqual(["10.1234/foo.bar"]);
+});
+
+test("extract DOIs ending with balanced parentheses", () => {
+    expect(doi.extract("10.1234/foo(bar)")).toEqual(["10.1234/foo(bar)"]);
+});
+
+test("discards multiple contiguous trailing punctuation", () => {
+    expect(doi.extract("10.1130/2013.2502...',")).toEqual(["10.1130/2013.2502"]);
+});
+
+test("discards trailing Unicode punctuation", () => {
+    expect(doi.extract("10.1130/2013.2502…")).toEqual(["10.1130/2013.2502"]);
+});
+
+test("extracts old Wiley DOIs", () => {
+    expect(doi.extract("10.1002/(SICI)1096-8644(199601)99:1<135::AID-AJPA8>3.0.CO;2-#")).toEqual(["10.1002/(sici)1096-8644(199601)99:1<135::aid-ajpa8>3.0.co;2-#"]);
+});
+
+test("does not extract a closing parenthesis if not part of the DOI", () => {
+    expect(doi.extract("(This is an example of a DOI: 10.1130/2013.2502)")).toEqual(["10.1130/2013.2502"]);
+});
+
+test("discards trailing punctuation from old Wiley DOIs", () => {
+    expect(doi.extract("10.1002/(SICI)1096-8644(199601)99:1<135::AID-AJPA8>3.0.CO;2-#',")).toEqual(["10.1002/(sici)1096-8644(199601)99:1<135::aid-ajpa8>3.0.co;2-#"]);
+});
+
+test("discards trailing punctuation after balanced parentheses", () => {
+    expect(doi.extract("10.1130/2013.2502(04)',")).toEqual(["10.1130/2013.2502(04)"]);
+});
+
+test("does not extract DOIs with purely punctuation suffixes", () => {
+    expect(doi.extract("10.1130/!).',")).toEqual([]);
+});
+
+test("extracts DOIs separated by Unicode whitespace", () => {
+    expect(doi.extract("10.1234/foo  10.1234/bar")).toEqual(["10.1234/foo", "10.1234/bar"]);
+});
+
+test("returns no DOIs if given nothing", () => {
+    expect(doi.extract(undefined)).toEqual([]);
 });
