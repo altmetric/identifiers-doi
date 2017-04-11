@@ -2,7 +2,11 @@
   "name": "identifiers-doi",
   "version": "0.2.0",
   "description": "Extract, validate and normalize DOIs (and ISBN-As).",
-  "keywords": ["doi", "isbn-a", "identifiers"],
+  "keywords": [
+    "doi",
+    "isbn-a",
+    "identifiers"
+  ],
   "main": "./lib/doi.js",
   "repository": "https://github.com/altmetric/identifiers-doi",
   "bugs": "https://github.com/altmetric/identifiers-doi/issues",
@@ -12,11 +16,15 @@
     "node": ">= 4"
   },
   "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-jest": "^18.0.0",
+    "babel-preset-env": "^1.1.8",
     "eslint": "^3.15.0",
     "jest": "^18.1.0"
   },
   "scripts": {
-    "pretest": "eslint lib tests",
-    "test": "jest"
+    "pretest": "yarn build && eslint lib tests",
+    "test": "jest",
+    "build": "babel src -d lib"
   }
 }
