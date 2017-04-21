@@ -2,7 +2,7 @@
 
 Extract, validate and normalize [DOIs](https://www.doi.org/) (including [ISBN-As](https://www.doi.org/factsheets/ISBN-A.html)).
 
-**Current version:** 0.1.0  
+**Current version:** 0.2.0  
 **Supported Node.js versions:** 4, 5, 6, 7
 
 ## Installation
@@ -10,7 +10,7 @@ Extract, validate and normalize [DOIs](https://www.doi.org/) (including [ISBN-As
 Add the following to your `package.json` via `yarn add identifiers-doi` or `npm install --save identifiers-doi`:
 
 ```shell
-"identifiers-doi": "^0.1.0"
+"identifiers-doi": "^0.2.0"
 ```
 
 ## Usage
