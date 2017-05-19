@@ -27,5 +27,8 @@
     "test": "jest",
     "compile": "babel src -d lib",
     "prepublish": "yarn compile"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
